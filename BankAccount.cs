@@ -7,30 +7,41 @@
         private int balance;
         public int moneyInputInt;
         public string moneyInputString;
+        public bool authorised = false;
 
-        public BankAccount(int accountNumber, int pinCode, int balance)
+        public BankAccount(int accountNumber, int pincode, int balance)
         {
             AccountNumber = accountNumber;
-            PinCode = pinCode;
+            Pincode = pincode;
             Balance = balance;
         }
 
         public int AccountNumber { get; private set; }
-        public int PinCode { get; private set; }
+        public int Pincode { get; private set; }
         public int Balance { get; private set; }
 
-        public void verification(int userInput)
+        public void verification()
         {
-            
-            if (userInput == PinCode)
+            int pincodeInput = GetMoneyInput();
+
+            if (pincodeInput == Pincode)
             {
                 Console.WriteLine("Authentication successful!");
                 Console.WriteLine("=========================");
+                authorised = true;
+                
             }
-            else if (userInput != PinCode)
+            else if (pincodeInput != Pincode)
             {
-                Console.WriteLine("Invalide pincode, please try again");
+                Console.WriteLine("Incorrect pincode, please try again");
+                return;
             }
+        }
+
+        public void LogOut() 
+        {
+            authorised = false;
+            Console.WriteLine("You have been logged out!");
         }
 
         public void Deposit() 

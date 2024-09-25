@@ -1,5 +1,4 @@
-﻿// using System.Security.Cryptography.X509Certificates;
-using System;
+﻿
 
 namespace _3_ATM_Machine
 {
@@ -12,7 +11,7 @@ namespace _3_ATM_Machine
 
             WelcomePhrase();
             Menu1Choices(uI, bank1);
-            Menu2Choices(uI, bank1);
+
         }
 
         private static void Menu1Choices(UI uI, BankAccount bank1)
@@ -22,8 +21,15 @@ namespace _3_ATM_Machine
             if (inputChoice == "1")
             {
                 Console.WriteLine("Please type in the pincode to your account:");
-                bank1.verification(bank1.GetMoneyInput());
-
+                bank1.verification();
+                if (bank1.authorised == true)
+                {
+                    Menu2Choices(uI, bank1);
+                }
+                else
+                {
+                    Menu1Choices(uI, bank1);
+                }
             }
             else if (inputChoice == "2")
             {
@@ -50,7 +56,7 @@ namespace _3_ATM_Machine
             }
             else if (inputChoice == "4")
             {
-                Console.WriteLine("You have been logged out!");
+                bank1.LogOut();
                 Menu1Choices(uI, bank1);
             }
             else if (inputChoice == "5")
