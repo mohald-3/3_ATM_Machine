@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "3_ATM_Machine": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
